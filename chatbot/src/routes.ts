@@ -1,0 +1,26 @@
+import { Router } from "express";
+import multer from "multer";
+
+const upload = multer({ dest: "uploads/" });
+
+const router = Router();
+
+router.post("/upload", upload.single("file"), (req, res) => {
+    try{
+        if(!req.file){
+            return res.status(400).send("No file uploaded");
+        }
+        res.send("File uploaded successfully");
+    } catch (error) {
+        res.status(500).send("Error uploading file");
+    }
+});
+router.post("/query", (req, res) => {
+    try{
+    const {question} = req.body;
+    if(!question) return res.status(400).send("No question provided");
+    } catch (error) {
+        res.status(500).send("Error processing query");
+    }
+});
+export default router;
