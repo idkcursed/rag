@@ -1,5 +1,5 @@
 import fs from "fs";
-import { PDFLoader } from "langchain/document_loaders";
+import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
 import { GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
 import { MemoryVectorStore } from "langchain/vectorstores/memory";
 import { setvectorStore } from "./vectorstore";
