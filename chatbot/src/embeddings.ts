@@ -1,5 +1,5 @@
 import fs from "fs";
-import { PDFLoader } from "langchain/document_loaders/fs/pdf";
+import { PDFLoader } from "langchain/document_loaders";
 import { GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
 import { MemoryVectorStore } from "langchain/vectorstores/memory";
 import { setvectorStore } from "./vectorstore";
@@ -14,6 +14,12 @@ export async function processPDF(filePath: string) {
 
     });
 
-    
+    const vectorstore = await MemoryVectorStore.fromDocuments(docs,embeddings);
+        setvectorStore(vectorstore)
+
+        fs.unlinkSync(filePath);
+
+
+
 }
 
